@@ -62,3 +62,22 @@ class Image(models.Model):
     def get_single_image(cls, id):
         image = cls.objects.get(id=id)
         return image       
+
+class Comment(models.Model):
+    user= models.ForeignKey(User,on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=60)
+    comment_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.comment
+
+    def save_comment(self):
+        self.save()
+
+class Likes(models.Model):
+    image=models.ForeignKey(Image, on_delete=models.CASCADE, related_name='images')
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+       return self.likes         
