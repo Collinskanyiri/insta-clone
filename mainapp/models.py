@@ -28,3 +28,37 @@ class Profile(models.Model):
     def get_profile_by_user(cls, user):
         profile = cls.objects.filter(user=user)
         return profile
+
+class Image(models.Model):
+        user=models.ForeignKey(User, on_delete=models.CASCADE,related_name='images')
+    image= CloudinaryField('image') 
+    image_name=models.CharField(max_length=60)
+    image_date = models.DateTimeField(auto_now_add=True,)
+    image_caption = models.TextField(blank=True)
+    likes=models.IntegerField(default=0)
+    comments=models.IntegerField(default=0)
+
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
+
+    def update_image(self):
+        self.update_image()
+
+    @classmethod
+    def get_images_by_user(cls, user):
+        images = cls.objects.filter(user=user)
+        return images
+
+    @classmethod
+    def search_by_image_name(cls, search_term):
+        images = cls.objects.filter(
+            image_name__icontains=search_term)
+        return images
+
+    @classmethod
+    def get_single_image(cls, id):
+        image = cls.objects.get(id=id)
+        return image       
