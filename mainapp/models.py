@@ -30,7 +30,7 @@ class Profile(models.Model):
         return profile
 
 class Image(models.Model):
-        user=models.ForeignKey(User, on_delete=models.CASCADE,related_name='images')
+    user=models.ForeignKey(User, on_delete=models.CASCADE,related_name='images')
     image= CloudinaryField('image') 
     image_name=models.CharField(max_length=60)
     image_date = models.DateTimeField(auto_now_add=True,)
