@@ -91,7 +91,12 @@ DATABASES = {
         'PASSWORD': '12345'
     }
 }
-
+cloudinary.config(
+    cloud_name ="dkklgdicf",
+    api_key = "199135368184773",
+    api_secret = "rO6_o3i1guW7H7-ZNlXHHvlK4os",
+    
+)
 
 
 
